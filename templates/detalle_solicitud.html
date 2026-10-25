@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block titulo %}{{ solicitud.folio }} · Óptica Amaru{% endblock %}
+
+{% block contenido %}
+<p><a href="{% url 'lista_solicitudes' %}" class="fw-semibold text-decoration-none">← Volver a la lista</a></p>
+<p class="etiqueta-azul">Solicitud {{ solicitud.folio }}</p>
+<h1>{{ solicitud.cliente.nombre }}</h1>
+<p class="my-3"><span class="estado {% if solicitud.estado.orden == 3 or solicitud.estado.orden == 4 %}taller{% elif solicitud.estado.orden >= 5 %}listo{% endif %}">{{ solicitud.estado.nombre }}</span></p>
+
+<div class="row g-4 align-items-start">
+    <div class="col-lg-6">
+        <form method="post" class="tarjeta">
+            {% csrf_token %}
+            <h2 class="h4 mb-3">Cambiar estado</h2>
+            <div class="opciones mb-4">
+                {% for opcion in form.estado %}
+                <label>{{ opcion.tag }} {{ opcion.choice_label }}</label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Guardar cambio</button>
+        </form>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="tarjeta">
+            <h2 class="h4 mb-3">Datos</h2>
+            <table class="table mb-0">
+                <tr><th>RUT</th><td>{{ solicitud.cliente.rut }}</td></tr>
+                <tr><th>Contacto</th><td>{{ solicitud.cliente.contacto }} · {{ solicitud.cliente.telefono }} {{ solicitud.cliente.email }}</td></tr>
+                <tr><th>Solicitud</th><td>{{ solicitud.tipo.nombre }}{% if solicitud.filtro_azul %} · con filtro azul{% endif %}</td></tr>
+                <tr><th>Receta</th><td>{% if solicitud.receta %}<a href="{{ solicitud.receta.url }}" target="_blank">Ver receta</a>{% else %}Sin receta: agendar examen{% endif %}</td></tr>
+                <tr><th>Consentimiento</th><td>{% if solicitud.cliente.acepta_datos %}Sí, aceptó{% else %}No registrado{% endif %}</td></tr>
+                <tr><th>Creada</th><td>{{ solicitud.fecha_creacion|date:"d/m/Y H:i" }}</td></tr>
+                <tr><th>Entrega estimada</th><td>{{ solicitud.fecha_entrega|date:"d/m/Y" }}</td></tr>
+                {% if solicitud.indicaciones %}<tr><th>Indicaciones</th><td>{{ solicitud.indicaciones }}</td></tr>{% endif %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

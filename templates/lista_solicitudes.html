@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block titulo %}Panel de gestión · Óptica Amaru{% endblock %}
+
+{% block contenido %}
+<p class="etiqueta-azul">Personal de la óptica</p>
+<h1>Gestión de solicitudes</h1>
+
+<div class="row g-3 my-3">
+    <div class="col-6 col-md-3"><div class="indicador"><b>{{ activas }}</b><span>Activas</span></div></div>
+    <div class="col-6 col-md-3"><div class="indicador"><b>{{ en_taller }}</b><span>En taller</span></div></div>
+    <div class="col-6 col-md-3"><div class="indicador"><b>{{ listas }}</b><span>Listas para retiro</span></div></div>
+    <div class="col-6 col-md-3"><div class="indicador {% if con_demora %}rojo{% endif %}"><b>{{ con_demora }}</b><span>Con demora</span></div></div>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col"><input type="search" name="q" value="{{ q }}" class="form-control" placeholder="Buscar por RUT, código o nombre"></div>
+    <div class="col-auto"><button class="btn btn-primary" type="submit">Buscar</button></div>
+</form>
+
+<div class="tabla table-responsive">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr><th>Código</th><th>Cliente</th><th>RUT</th><th>Solicitud</th><th>Estado</th><th>Entrega</th></tr>
+        </thead>
+        <tbody>
+            {% for s in solicitudes %}
+            <tr>
+                <td><a href="{% url 'detalle_solicitud' s.idSolicitud %}" class="fw-bold text-decoration-none">{{ s.folio }}</a></td>
+                <td>{{ s.cliente.nombre }}</td>
+                <td>{{ s.cliente.rut_oculto }}</td>
+                <td>{{ s.tipo.nombre }}</td>
+                <td><span class="estado {% if s.estado.orden == 3 or s.estado.orden == 4 %}taller{% elif s.estado.orden >= 5 %}listo{% endif %}">{{ s.estado.nombre }}</span></td>
+                <td>{{ s.fecha_entrega|date:"d/m/Y" }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center text-secondary py-5">No hay solicitudes que coincidan.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

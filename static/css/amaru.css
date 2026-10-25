@@ -1,0 +1,89 @@
+/* Colores y detalles de Amaru. Bootstrap pone la base; aquí solo cambiamos colores y algunos detalles. */
+:root {
+    --azul: #0b6ba8;
+    --azul-oscuro: #084f7c;
+    --tinta: #0f1b33;
+    --gris: #5a6a86;
+    --linea: #dfe7f2;
+    --celeste: #e3edfa;
+    --naranja: #e8712a;
+    --verde: #0f9d6a;
+    --bs-primary: #0b6ba8;
+    --bs-primary-rgb: 11, 107, 168;
+}
+body { background: #eef3fb; color: var(--tinta); font-family: 'Inter', system-ui, sans-serif; }
+h1, h2, h3, .titulo { font-family: 'Bricolage Grotesque', 'Inter', sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.btn { font-weight: 700; border-radius: .8rem; }
+.btn-primary { --bs-btn-bg: #0b6ba8; --bs-btn-border-color: #0b6ba8; --bs-btn-hover-bg: #084f7c; --bs-btn-hover-border-color: #084f7c; --bs-btn-active-bg: #084f7c; --bs-btn-active-border-color: #084f7c; }
+.btn-suave { background: var(--celeste); color: var(--azul-oscuro); border: 0; }
+.btn-suave:hover { background: #d3e2f6; color: var(--azul-oscuro); }
+.form-control, .form-select { border: 1.5px solid var(--linea); background: #f7f9fd; padding: .8rem 1rem; border-radius: .8rem; }
+.form-control:focus, .form-select:focus { border-color: var(--azul); box-shadow: 0 0 0 .25rem rgba(11, 107, 168, .16); background: #fff; }
+.form-label { font-weight: 700; font-size: .9rem; }
+
+/* barra de arriba */
+.barra { background: #fff; border-bottom: 1px solid var(--linea); }
+.barra .navbar-brand img { height: 38px; }
+.barra .nav-link { font-weight: 600; color: var(--gris); border-radius: .6rem; padding: .55rem .9rem; }
+.barra .nav-link:hover { background: #eef3fb; color: var(--tinta); }
+.barra .nav-link.activo { background: var(--azul); color: #fff; }
+
+/* tarjetas blancas */
+.tarjeta { background: #fff; border: 1px solid var(--linea); border-radius: 1.1rem; padding: 1.8rem; }
+.etiqueta-azul { color: var(--azul); font-weight: 700; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; margin-bottom: .6rem; }
+
+/* pasos del formulario */
+.paso-titulo { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+.paso-titulo .numero { width: 38px; height: 38px; border-radius: 50%; background: var(--azul); color: #fff; display: grid; place-items: center; font-weight: 800; flex: none; }
+.paso-titulo h2 { font-size: 1.5rem; margin: 0; }
+
+/* opciones tipo tarjeta (radios): se marca el borde azul cuando se elige */
+.opciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .7rem; }
+.opciones label { display: flex; align-items: center; gap: .6rem; padding: .9rem 1rem; border: 1.5px solid var(--linea); border-radius: .8rem; background: #fff; font-weight: 600; cursor: pointer; margin: 0; }
+.opciones label:has(input:checked) { border-color: var(--azul); background: #f1f7fd; box-shadow: inset 0 0 0 1.5px var(--azul); }
+.check { display: flex; gap: .8rem; align-items: flex-start; padding: .9rem 1rem; border: 1.5px solid var(--linea); border-radius: .8rem; background: #fff; cursor: pointer; }
+.check:has(input:checked) { border-color: var(--azul); background: #f1f7fd; }
+.check input { margin-top: .2rem; flex: none; }
+
+/* inicio */
+.portada h1 { font-size: clamp(2.3rem, 5.4vw, 3.6rem); }
+.portada .foto { border-radius: 1.4rem; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(15, 27, 51, .5); }
+.portada .foto img { width: 100%; display: block; }
+.acceso { display: block; height: 100%; padding: 1.4rem; background: #fff; border: 1px solid var(--linea); border-radius: 1.1rem; text-decoration: none; color: var(--tinta); }
+a.acceso:hover { border-color: var(--azul); box-shadow: 0 0 0 4px rgba(11, 107, 168, .1); color: var(--tinta); }
+.acceso .icono { font-size: 1.6rem; }
+.acceso.pronto { background: transparent; border-style: dashed; opacity: .75; }
+
+/* código de seguimiento */
+.codigo { display: inline-block; padding: .9rem 1.6rem; border-radius: 1rem; background: var(--tinta); color: #fff; font: 800 2.1rem 'Bricolage Grotesque', sans-serif; letter-spacing: .06em; }
+
+/* línea de tiempo del estado */
+.linea { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.linea li { position: relative; display: flex; gap: 1rem; padding-bottom: 1.3rem; }
+.linea li::before { content: ""; position: absolute; left: 17px; top: 36px; bottom: -2px; width: 2px; background: var(--linea); }
+.linea li:last-child::before { display: none; }
+.linea li.hecho::before { background: var(--azul); }
+.linea .bola { width: 36px; height: 36px; border-radius: 50%; background: var(--celeste); color: #8aa0c4; display: grid; place-items: center; font-weight: 800; flex: none; z-index: 1; }
+.linea li.hecho .bola { background: var(--azul); color: #fff; }
+.linea li.actual .bola { background: var(--naranja); color: #fff; box-shadow: 0 0 0 6px rgba(232, 113, 42, .2); }
+.linea li b { display: block; padding-top: .4rem; }
+.linea li:not(.hecho):not(.actual) b { color: var(--gris); font-weight: 500; }
+
+/* panel del personal */
+.indicador { background: #fff; border: 1px solid var(--linea); border-radius: 1rem; padding: 1.1rem 1.3rem; height: 100%; }
+.indicador b { display: block; font: 800 2.3rem 'Bricolage Grotesque', sans-serif; line-height: 1; }
+.indicador span { color: var(--gris); font-size: .9rem; }
+.indicador.rojo b { color: #d23b3b; }
+.tabla { background: #fff; border: 1px solid var(--linea); border-radius: 1rem; overflow: hidden; }
+.tabla table { margin: 0; }
+.tabla th { font-size: .75rem; color: var(--gris); text-transform: uppercase; letter-spacing: .04em; background: #f8fafd; padding: .9rem 1rem; }
+.tabla td { padding: .9rem 1rem; }
+.estado { display: inline-block; padding: .3rem .7rem; border-radius: 99px; background: var(--celeste); color: var(--azul-oscuro); font-weight: 700; font-size: .78rem; white-space: nowrap; }
+.estado.taller { background: #fdf0d8; color: #8a5600; }
+.estado.listo { background: #dff5ec; color: #0a6e4a; }
+
+footer { background: var(--tinta); color: #b9c5dc; font-size: .9rem; }
+
+/* mensajes de error de los formularios de Django ({{ form.campo.errors }}) */
+.errorlist { list-style: none; padding: 0; margin: .4rem 0 0; color: #d23b3b; font-size: .86rem; font-weight: 600; }
+.alert .errorlist { color: inherit; font-weight: 400; }

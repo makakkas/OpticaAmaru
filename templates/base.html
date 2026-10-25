@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Óptica Amaru{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link href="{% static 'css/amaru.css' %}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-md barra sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'inicio' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Óptica Amaru">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'solicitar' %}activo{% endif %}" href="{% url 'solicitar' %}">Solicitar lentes</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'consultar_estado' %}activo{% endif %}" href="{% url 'consultar_estado' %}">Consultar estado</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'lista_solicitudes' or request.resolver_match.url_name == 'detalle_solicitud' %}activo{% endif %}" href="{% url 'lista_solicitudes' %}">Personal</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1">
+        <div class="container py-4 py-md-5">
+            {% block contenido %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container py-3 d-flex flex-wrap justify-content-between gap-2">
+            <span>Óptica Amaru · Proyecto integrado INACAP, Sección D-FB50</span>
+            <span>Tus datos de salud se usan solo con tu autorización.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

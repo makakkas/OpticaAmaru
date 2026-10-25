@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica Amaru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/amaru.css' %}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- MENÚ -->
+    <nav class="navbar navbar-expand-md barra sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'inicio' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Óptica Amaru">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'solicitar' %}">Solicitar lentes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'consultar_estado' %}">Consultar estado</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'lista_solicitudes' %}">Personal</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1">
+        <div class="container py-4 py-md-5">
+
+            <div class="portada row align-items-center g-4 g-lg-5">
+                <div class="col-lg-6">
+                    <p class="etiqueta-azul">Óptica Amaru</p>
+                    <h1>Tus lentes, sin papeleo ni filas.</h1>
+                    <p class="lead mt-3 text-secondary">Pide tus lentes desde el celular, sube la foto de tu receta y sigue cada etapa con un código.</p>
+                    <p class="mt-4 d-flex flex-wrap gap-2">
+                        <a class="btn btn-primary btn-lg" href="{% url 'solicitar' %}">Solicitar mis lentes →</a>
+                        <a class="btn btn-suave btn-lg" href="{% url 'consultar_estado' %}">Ya tengo un código</a>
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="foto"><img src="{% static 'img/tienda.jpg' %}" alt="Interior de la óptica Amaru"></div>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-4">
+                <div class="col-md-4">
+                    <a class="acceso" href="{% url 'solicitar' %}">
+                        <div class="icono">Crear un logito aqui xd</div>
+                        <h2 class="h4 mt-2">Solicitar lentes</h2>
+                        <p class="text-secondary mb-0">Cuéntanos qué necesitas y adjunta tu receta.</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <div class="acceso pronto">
+                        <div class="icono">Crear un logito aqui xd</div>
+                        <h2 class="h4 mt-2">Pedir una hora</h2>
+                        <p class="text-secondary mb-2">Reserva tu examen de la vista.</p>
+                        <span class="badge text-bg-light">Próximamente</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <a class="acceso" href="{% url 'consultar_estado' %}">
+                        <div class="icono">Crear un logito aqui xd</div>
+                        <h2 class="h4 mt-2">Consultar el estado</h2>
+                        <p class="text-secondary mb-0">Con tu RUT y tu código ves en qué etapa va tu solicitud.</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container py-3 d-flex flex-wrap justify-content-between gap-2">
+            <span>Óptica Amaru · Proyecto integrado INACAP, Sección D-FB50</span>
+            <span>Tus datos de salud se usan solo con tu autorización.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
